@@ -24,17 +24,19 @@ router.post(register, async (req, res) => {
     /* checking existing user using email */
     let user_exist = await User.findOne({ email });
     if (user_exist) {
-      return res
-        .status(400)
-        .json({ code: 400, message: `${email} ${existing_user}` });
+      return res.status(400).json({
+        code: 400,
+        message: `${email} ${existing_user}`
+      });
     }
 
     /* checking existing user using phone */
     let existing_phone = await User.findOne({ phone });
     if (existing_phone) {
-      return res
-        .status(400)
-        .json({ code: 400, message: `${phone} ${existing_user}` });
+      return res.status(400).json({
+        code: 400,
+        message: `${phone} ${existing_user}`
+      });
     }
 
     /* hashing password brfore store information */
@@ -42,19 +44,29 @@ router.post(register, async (req, res) => {
     const hashed = await bcrypt.hash(password, salt);
 
     /* save new user information */
-    const new_user = new User({ name, email, phone, password: hashed, role });
+    const new_user = new User({
+      name,
+      email,
+      phone,
+      password: hashed,
+      role
+    });
     await new_user.save();
 
     /* generate jwt token */
     const payload = { id: new_user.id, role: new_user.role };
     const token = jwt.sign(payload, jwt_secret, expireTimer);
 
-    return res.status(200).json({ code: 200, data: token });
-  } catch (error) {
-    console.error(`${error_msg} ${error.message}`);
-    return res
-      .status(500)
-      .json({ code: 500, data: null, message: something_wrong });
+    return res.status(200).json({
+      code: 200,
+      data: token
+    });
+  } catch (err) {
+    console.error(`${error_msg} ${err.message}`);
+    return res.status(500).json({
+      code: 500,
+      message: something_wrong
+    });
   }
 });
 
@@ -66,27 +78,35 @@ router.post(login, async (req, res) => {
     /* checking the email is exist or not */
     let user = await User.findOne({ email });
     if (!user) {
-      return res
-        .status(400)
-        .json({ code: 400, message: `${email} ${not_an_email}` });
+      return res.status(400).json({
+        code: 400,
+        message: `${email} ${not_an_email}`
+      });
     }
 
     /* validating the password */
     const valid_password = await bcrypt.compare(password, user.password);
     if (!valid_password) {
-      return res.status(400).json({ code: 400, message: wrong_password });
+      return res.status(400).json({
+        code: 400,
+        message: wrong_password
+      });
     }
 
     /* generate jwt token */
     const payload = { id: user.id, role: user.role };
     const token = jwt.sign(payload, jwt_secret, expireTimer);
 
-    return res.status(200).json({ code: 200, data: token });
-  } catch (error) {
-    console.error(`${error_msg} ${error.message}`);
-    return res
-      .status(500)
-      .json({ code: 500, data: null, message: something_wrong });
+    return res.status(200).json({
+      code: 200,
+      data: token
+    });
+  } catch (err) {
+    console.error(`${error_msg} ${err.message}`);
+    return res.status(500).json({
+      code: 500,
+      message: something_wrong
+    });
   }
 });
 

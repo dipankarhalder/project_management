@@ -22,6 +22,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ['super_admin', 'manager', 'owner', 'employee'],
     required: true
+  },
+  address: {
+    type: String
   }
 });
 
