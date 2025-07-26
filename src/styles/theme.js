@@ -19,6 +19,8 @@ export const theme = {
 
     transparent: "transparent",
     border: "#e4e4e4",
+    btnbg: "#ebebeb",
+    btntext: "#222222",
     text: "#5b5b5b",
   },
 };
