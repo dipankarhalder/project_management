@@ -1,5 +1,6 @@
 import { useToast } from "../../hooks/useToast";
 import { Button } from "../../shared/button";
+import { RowItems } from "../style";
 
 export const Home = () => {
   const addToast = useToast();
@@ -13,26 +14,31 @@ export const Home = () => {
   };
 
   return (
-    <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-      <Button onClick={handleClick}>Show Toast</Button>
-      <Button onClick={() => alert("Primary clicked")}>Primary</Button>
-      <Button
-        variant="secondary"
-        textColor="#ffffff"
-        onClick={() => alert("Secondary clicked")}
-      >
-        Click
-      </Button>
-      <Button
-        variant="outline"
-        bgColor="#ffffff"
-        textColor="#000000"
-        borderColor="#000000"
-        onClick={() => alert("Outline clicked")}
-      >
-        Click
-      </Button>
-      <Button disabled>Disabled</Button>
-    </div>
+    <>
+      <RowItems>
+        <Button onClick={handleClick}>Show Toast</Button>
+        <Button onClick={() => alert("Primary clicked")}>Primary</Button>
+        <Button
+          loading={true}
+          variant="secondary"
+          textColor="#ffffff"
+          onClick={() => alert("Secondary clicked")}
+        >
+          Click
+        </Button>
+        <Button
+          loading={true}
+          variant="outline"
+          bgColor="#ffffff"
+          textColor="#000000"
+          borderColor="#000000"
+          onClick={() => alert("Outline clicked")}
+        >
+          Click
+        </Button>
+        <Button disabled>Disabled</Button>
+      </RowItems>
+      <RowItems>dfv</RowItems>
+    </>
   );
 };
