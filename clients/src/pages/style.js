@@ -8,10 +8,10 @@ export const RowItems = styled.div`
 
   .box {
     width: 100px;
-    height: 100px;
-    line-height: 100px;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
 
     &.blue {
