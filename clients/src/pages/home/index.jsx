@@ -16,29 +16,51 @@ export const Home = () => {
   return (
     <>
       <RowItems>
-        <Button onClick={handleClick}>Show Toast</Button>
-        <Button onClick={() => alert("Primary clicked")}>Primary</Button>
+        <Button
+          fontSize={14}
+          textColor={"white"}
+          padding={"8px 18px"}
+          borderSize={1}
+          bgColor={"green"}
+          borderColor={"green"}
+          height={"auto"}
+          radius={6}
+          onClick={handleClick}
+        >
+          Show Toast
+        </Button>
+        <Button onClick={() => alert("Primary clicked")}>Primary Button</Button>
         <Button
           loading={true}
-          variant="secondary"
-          textColor="#ffffff"
+          textColor={"white"}
           onClick={() => alert("Secondary clicked")}
         >
           Click
         </Button>
         <Button
           loading={true}
-          variant="outline"
-          bgColor="#ffffff"
-          textColor="#000000"
-          borderColor="#000000"
+          bgColor={"black"}
+          textColor={"white"}
+          borderSize={1}
+          fontSize={13}
+          borderColor={"black"}
           onClick={() => alert("Outline clicked")}
         >
           Click
         </Button>
-        <Button disabled>Disabled</Button>
+        <Button fontSize={13} disabled>
+          Disabled
+        </Button>
       </RowItems>
-      <RowItems>dfv</RowItems>
+      <RowItems>
+        <div className="box blue">Option</div>
+        <div className="box green">Option</div>
+        <div className="box red">Option</div>
+        <div className="box orange">Option</div>
+        <div className="box violet">Option</div>
+        <div className="box yellow">Option</div>
+        <div className="box blueitem">Option</div>
+      </RowItems>
     </>
   );
 };
