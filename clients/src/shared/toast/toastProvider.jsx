@@ -18,7 +18,6 @@ export const ToastProvider = ({ children }) => {
   const addToast = useCallback(
     (message, duration = 5000) => {
       if (!message.type) return;
-
       setToastData({
         show: true,
         type: message.type,
