@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { darken } from "polished";
-import { center, icons } from "../../styles/mixin";
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -33,11 +32,17 @@ export const StyledButton = styled.button`
 `;
 
 export const SpinnerWrapper = styled.span`
-  ${center()}
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 6px;
 
   svg {
-    ${icons(16)}
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: ${spin} 1s linear infinite;
   }
 
