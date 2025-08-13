@@ -2,20 +2,16 @@ import styled, { keyframes, css } from "styled-components";
 
 const typeColors = {
   success: {
-    bg: "successbg",
-    text: "success",
+    text: "green",
   },
   info: {
-    bg: "infobg",
-    text: "info",
+    text: "blue",
   },
   warning: {
-    bg: "warningbg",
-    text: "warning",
+    text: "orange",
   },
   error: {
-    bg: "errorbg",
-    text: "error",
+    text: "red",
   },
 };
 
@@ -56,6 +52,7 @@ export const ToastCover = styled.div`
 
   ${({ type, theme }) => {
     const textColor = typeColors[type]?.text || "info";
+
     return css`
       border-left: 3px solid ${theme.colors[textColor]};
       color: ${theme.colors[textColor]};
@@ -73,12 +70,12 @@ export const ToastContent = styled.div`
   gap: 2px;
 
   h5 {
-    font-size: 13px;
+    font-size: 14px;
     margin: 0;
   }
 
   & > p {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     line-height: normal;
     color: ${({ theme }) => theme.colors.text};
@@ -87,14 +84,14 @@ export const ToastContent = styled.div`
 `;
 
 export const CloseButton = styled.button`
-  position: absolute;
   top: 6px;
   right: 6px;
   border: none;
-  background: transparent;
   width: 26px;
   height: 26px;
   display: flex;
+  position: absolute;
+  background: transparent;
   justify-content: center;
   align-items: center;
   cursor: pointer;

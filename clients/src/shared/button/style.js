@@ -1,4 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { darken } from "polished";
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -6,40 +7,26 @@ const spin = keyframes`
 `;
 
 export const StyledButton = styled.button`
-  padding: 5px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 6px;
+  font-size: ${(props) => props.$fontSize}px;
+  color: ${(props) => props.$textColor};
+  background: ${(props) => props.$bgColor};
+  border-radius: ${(props) => props.$radius}px;
+  padding: ${(props) => props.$padding};
+  border: ${(props) => `${props.$borderSize}px solid ${props.$borderColor}`};
+  height: ${(props) => props.$height};
+  transition: 0.5s;
   cursor: pointer;
-  border: none;
-  transition: background 0.3s ease;
-
-  background-color: ${(props) =>
-    props.$bgColor ||
-    (props.$variant === "outline" ? "transparent" : props.theme.colors.black)};
-
-  color: ${(props) =>
-    props.$textColor ||
-    (props.$variant === "secondary"
-      ? props.theme.colors.btntext
-      : props.$variant === "outline"
-      ? props.theme.colors.black
-      : "white")};
-
-  ${(props) =>
-    props.$variant === "outline" &&
-    css`
-      padding: 4px 14px;
-      border: 1px solid ${props.$borderColor || props.theme.colors.black};
-    `}
 
   &:hover {
-    opacity: 0.9;
+    border: ${(props) =>
+      `${props.$borderSize}px solid ${darken(0.06, props.$borderColor)}`};
+    background: ${(props) => darken(0.06, props.$bgColor)};
+    transition: 0.5s;
   }
 
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.border};
-    color: ${({ theme }) => theme.colors.text};
+    background: ${({ theme }) => theme.colors.border};
+    color: ${({ theme }) => darken(0.7, theme.colors.border)};
     cursor: not-allowed;
   }
 `;
@@ -53,13 +40,15 @@ export const SpinnerWrapper = styled.span`
   svg {
     width: 16px;
     height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: ${spin} 1s linear infinite;
   }
 
   p {
+    font-size: ${(props) => props.$fontSize}px;
     height: 18px;
     line-height: 18px;
-    font-size: 13px;
-    font-weight: 600;
   }
 `;
