@@ -17,39 +17,21 @@ export const Home = () => {
     <>
       <RowItems>
         <Button
-          fontSize={14}
-          textColor={"white"}
-          padding={"8px 18px"}
-          borderSize={1}
-          bgColor={"green"}
-          borderColor={"green"}
-          height={"auto"}
-          radius={6}
+          variant="small"
+          bgColor="#2205de"
+          textColor="#fff"
           onClick={handleClick}
         >
-          Show Toast
+          Small Button
         </Button>
-        <Button onClick={() => alert("Primary clicked")}>Primary Button</Button>
-        <Button
-          loading={true}
-          textColor={"white"}
-          onClick={() => alert("Secondary clicked")}
-        >
-          Click
+        <Button variant="medium" bgColor="#2205de" textColor="#fff">
+          Medium Button
         </Button>
-        <Button
-          loading={true}
-          bgColor={"black"}
-          textColor={"white"}
-          borderSize={1}
-          fontSize={13}
-          borderColor={"black"}
-          onClick={() => alert("Outline clicked")}
-        >
-          Click
+        <Button variant="medium" bgColor="#2205de" textColor="#fff" disabled>
+          Medium Button - Disabled
         </Button>
-        <Button fontSize={13} disabled>
-          Disabled
+        <Button variant="large" bgColor="#2205de" textColor="#fff">
+          Large Button
         </Button>
       </RowItems>
       <RowItems>
