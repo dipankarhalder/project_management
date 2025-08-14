@@ -70,12 +70,12 @@ export const ToastContent = styled.div`
   gap: 2px;
 
   h5 {
-    font-size: 14px;
+    font-size: 15px;
     margin: 0;
   }
 
   & > p {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     line-height: normal;
     color: ${({ theme }) => theme.colors.text};

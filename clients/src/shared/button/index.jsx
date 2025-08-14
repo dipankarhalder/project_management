@@ -1,37 +1,120 @@
+import styled, { css, keyframes } from "styled-components";
 import { Loading } from "../icons";
-import { StyledButton, SpinnerWrapper } from "./style";
+
+const sizeVariants = {
+  small: "36px",
+  medium: "42px",
+  large: "48px",
+};
+
+const paddingVariants = {
+  small: "0px 20px",
+  medium: "0px 26px",
+  large: "0px 32px",
+};
+
+const loadingPaddingVariants = {
+  small: "0px 22px 0px 18px",
+  medium: "0px 24px 0px 20px",
+  large: "0px 26px 0px 22px",
+};
+
+const fontVariants = {
+  small: "13px",
+  medium: "15px",
+  large: "16px",
+};
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 7px;
+  background-color: ${({ $bgColor }) => $bgColor};
+  color: ${({ $textColor }) => $textColor};
+  transition: all 0.2s ease;
+
+  ${({ $variant, $loading }) => css`
+    height: ${sizeVariants[$variant]};
+    padding: ${$loading
+      ? loadingPaddingVariants[$variant]
+      : paddingVariants[$variant]};
+    font-size: ${fontVariants[$variant]};
+  `}
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: #dddddd !important;
+      color: #111111 !important;
+      cursor: not-allowed;
+      opacity: 0.6;
+      transform: none;
+    `}
+`;
+
+const SpinnerWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: ${spin} 1s linear infinite;
+  }
+`;
+
+const SpinnerText = styled.p`
+  height: 18px;
+  line-height: 18px;
+
+  ${({ $variant }) => css`
+    font-size: ${fontVariants[$variant]};
+  `}
+`;
 
 export const Button = ({
   children,
-  onClick,
-  disabled = false,
+  variant = "medium",
+  bgColor = "#007bff",
+  textColor = "#ffffff",
   loading = false,
-  fontSize = 14,
-  textColor = "white",
-  bgColor = "black",
-  padding = "8px 18px",
-  borderSize = 1,
-  borderColor = "black",
-  height = "auto",
-  radius = 8,
+  disabled = false,
+  onClick,
 }) => {
+  const isDisabled = disabled || loading;
+
   return (
     <StyledButton
-      onClick={onClick}
-      disabled={disabled || loading}
-      $fontSize={fontSize}
-      $textColor={textColor}
+      $variant={variant}
       $bgColor={bgColor}
-      $padding={padding}
-      $borderSize={borderSize}
-      $borderColor={borderColor}
-      $height={height}
-      $radius={radius}
+      $textColor={textColor}
+      $loading={loading}
+      onClick={onClick}
+      disabled={isDisabled}
     >
       {loading ? (
         <SpinnerWrapper>
           <Loading />
-          <p>Please wait...</p>
+          <SpinnerText $variant={variant}>Please wait...</SpinnerText>
         </SpinnerWrapper>
       ) : (
         children
