@@ -4,25 +4,21 @@ import { Loading } from "../icons";
 const sizeVariants = {
   small: "36px",
   medium: "42px",
-  large: "48px",
 };
 
 const paddingVariants = {
   small: "0px 20px",
-  medium: "0px 26px",
-  large: "0px 32px",
+  medium: "0px 30px",
 };
 
 const loadingPaddingVariants = {
   small: "0px 22px 0px 18px",
-  medium: "0px 24px 0px 20px",
-  large: "0px 26px 0px 22px",
+  medium: "0px 30px 0px 26px",
 };
 
 const fontVariants = {
   small: "13px",
   medium: "15px",
-  large: "16px",
 };
 
 const spin = keyframes`
@@ -34,7 +30,7 @@ const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   font-weight: 600;
-  border-radius: 7px;
+  border-radius: 6px;
   background-color: ${({ $bgColor }) => $bgColor};
   color: ${({ $textColor }) => $textColor};
   transition: all 0.2s ease;
@@ -59,7 +55,7 @@ const StyledButton = styled.button`
     disabled &&
     css`
       background-color: #dddddd !important;
-      color: #111111 !important;
+      color: #000000 !important;
       cursor: not-allowed;
       opacity: 0.6;
       transform: none;
